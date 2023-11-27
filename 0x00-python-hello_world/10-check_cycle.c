@@ -1,18 +1,35 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "lists.h>
+#include "lists.h"
+
 /**
- * check_cycle - checks if list is cyclical
- * @list: pointer to list to check
- * Return : 1 if cyclical, 0 otherwise
+ * check_cycle - function checks if a singly linked list has a cycle in it.
+ * @list: pointer to the beginning of the node
+ * Return: 0 if no cycle, 1 if there is a cycle
  */
 int check_cycle(listint_t *list)
-	listint_t *slow = list, * fast = list;
-while (fast && fast->next)
 {
-slow = slow->next;
-fast = fast->next->next;
-	if (slow==fast)
-		return (1);
+	listint_t *current, *check;
+
+	if (list == NULL || list->next == NULL)
+		return (0);
+	current = list;
+	check = current->next;
+
+	while (current != NULL && check->next != NULL
+		&& check->next->next != NULL)
+	{
+		if (current == check)
+			return (1);
+		current = current->next;
+		check = check->next->next;
+	}
+	return (0);
 }
-return(0);
+
+advanced 
+task 11: vi 100-write.py
+
+#!/usr/bin/python3
+import sys
+sys.stderr.write('and that piece of art is useful - Dora Korpar, 2015-10-19\n')
+sys.exit(1)
+
